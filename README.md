@@ -1,6 +1,6 @@
 # Blogicum
 
-Blogger — учебный Django-проект платформы для публикации постов. Пользователи могут просматривать публикации, знакомиться с постами, фильтровать записи по категориям и посещать информационные страницы проекта.
+Blogicum — учебный Django-проект платформы для публикации постов. Пользователи могут просматривать публикации, знакомиться с отдельными постами, фильтровать записи по категориям и посещать информационные страницы проекта.
 
 ## Возможности
 
@@ -35,11 +35,13 @@ python -m venv venv
 Активировать окружение:
 
 **macOS / Linux**
+
 ```bash
 source venv/bin/activate
 ```
 
 **Windows**
+
 ```bash
 venv\Scripts\activate
 ```
@@ -50,19 +52,45 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Выполнить миграции
+### 4. Настроить переменные окружения
 
-```bash
-python manage.py migrate
+В корне проекта создайте файл `.env` и добавьте в него:
+
+```env
+SECRET_KEY=ваш-секретный-ключ
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
 ```
 
-### 5. Запустить сервер
+Сгенерировать секретный ключ можно командой:
 
 ```bash
-python manage.py runserver
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+Вставьте полученный ключ вместо `ваш-секретный-ключ`.
+
+### 5. Выполнить миграции
+
+```bash
+python blogicum/manage.py migrate
+```
+
+### 6. Запустить сервер
+
+```bash
+python blogicum/manage.py runserver
 ```
 
 Проект будет доступен по адресу http://127.0.0.1:8000/.
+
+## Запуск тестов
+
+Из корневой папки проекта выполните:
+
+```bash
+python -m pytest
+```
 
 ## Лицензия
 
